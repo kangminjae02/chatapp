@@ -1,0 +1,37 @@
+type Chat{
+    id: Int!
+    userid: String!
+    username: String!
+    message: String!
+}
+
+type User{
+    id: String!
+    password: String!
+    name: String!,
+    gender: String!,
+    age: Int!,
+    address: String!
+}
+
+type Login{
+    id:String!
+    password:String!
+}
+
+type Query{
+    chatLog : [Chat]!
+    userInfo(id:String!) : User!
+}
+
+type Mutation{
+    addChat(userid:String!, username:String!, message: String!) : Chat!
+    deleteChat(id: Int!) : Boolean!
+
+    signUp(id: String!, password: String!, name: String!, gender: String!, age: Int!, address: String!) : Boolean!
+    signIn(id: String!, password: String!) : Boolean!
+}
+
+type Subscription{
+    newChat: Chat
+}
