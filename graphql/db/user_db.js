@@ -5,7 +5,8 @@ let users = {
         name:'bot',
         gender: 'bot',
         age: 0,
-        address:'bot'
+        address:'bot',
+        myRooms:[]
     },
 }
 
@@ -14,6 +15,13 @@ export function getUserInfo(id){
         throw Error('해당 회원이 존재하지 않음');
     }
     return users[id];
+}
+
+export function getMyRooms(id){
+    if(!users[id]){
+        throw Error('해당 회원이 존재하지 않음');
+    }
+    return users[id].myRooms;
 }
 
 export function signUp(id, password, name, gender, age, address){

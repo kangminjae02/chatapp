@@ -12,6 +12,7 @@ type User{
     gender: String!,
     age: Int!,
     address: String!
+    myRooms:[Int]
 }
 
 type Login{
@@ -19,14 +20,25 @@ type Login{
     password:String!
 }
 
-type Query{
-    chatLog : [Chat]!
-    userInfo(id:String!) : User!
+type Room{
+    id : Int!
+    users: [String]!
+    chatLog: [Chat]!
 }
 
+type Query{
+    chatLog(id:Int!) : [Chat]!
+    userInfo(id:String!) : User!
+
+    getChatRoom(id:Int!) : Room!
+    getChatLog(id:Int!) : [Chat]!
+}
+
+
 type Mutation{
-    addChat(userid:String!, username:String!, message: String!) : Chat!
-    deleteChat(id: Int!) : Boolean!
+    createRoom(users:[String]!) : Room!
+    addChat(roomid:Int!, userid:String!, username:String!, message: String!) : Chat!
+    deleteChat(roomid: Int!, chatid: Int!) : Boolean!
 
     signUp(id: String!, password: String!, name: String!, gender: String!, age: Int!, address: String!) : Boolean!
     signIn(id: String!, password: String!) : Boolean!
